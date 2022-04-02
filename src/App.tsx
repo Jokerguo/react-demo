@@ -1,27 +1,32 @@
-import {
-  HashRouter as Router,
-  Routes,
-  Route,
-  Link,
-  Navigate,
-} from 'react-router-dom'
+import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
+import styled from 'styled-components'
+import Nav from 'components/Nav'
+
+const Wrapper = styled.div`
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+`
+const Main = styled.main`
+  flex-grow: 1;
+  overflow: auto;
+`
 
 function App() {
   return (
     <Router>
-      <Link to="/tags">标签页面</Link>
-      <br />
-      <Link to="/money">计算页</Link>
-      <br />
-      <Link to="/statistics">统计也</Link>
-      <hr />
-      <Routes>
-        <Route path="/tags" element={<Tags />} />
-        <Route path="/money" element={<Money />} />
-        <Route path="/statistics" element={<Statistics />} />
-        <Route path="*" element={<NoMatch />} />
-        <Route path="/" element={<Navigate to="/money" replace />} />
-      </Routes>
+      <Wrapper>
+        <Main>
+          <Routes>
+            <Route path="/tags" element={<Tags />} />
+            <Route path="/money" element={<Money />} />
+            <Route path="/statistics" element={<Statistics />} />
+            <Route path="*" element={<NoMatch />} />
+            <Route path="/" element={<Navigate to="/money" replace />} />
+          </Routes>
+        </Main>
+        <Nav />
+      </Wrapper>
     </Router>
   )
 }
