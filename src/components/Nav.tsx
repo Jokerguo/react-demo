@@ -20,9 +20,9 @@ const NavWrapper = styled.nav`
           height: 24px;
         }
         &.selected {
-          color: red;
+          color: #ff6f06;
           .icon {
-            fill: red;
+            fill: #ff6f06;
           }
         }
       }
