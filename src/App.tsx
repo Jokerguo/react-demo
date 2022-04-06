@@ -1,5 +1,5 @@
 import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
-import Money from 'views/money'
+import Money from 'views/Money'
 import NoMatch from 'views/noMatch'
 import Statistics from 'views/statistics'
 import Tags from 'views/tags'
