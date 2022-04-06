@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
 import Icon from './Icon'
+import { NavLink } from 'react-router-dom'
 
 const NavWrapper = styled.nav`
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
@@ -9,14 +9,22 @@ const NavWrapper = styled.nav`
     display: flex;
     > li {
       width: 33.33%;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 4px 0;
-      .icon {
-        width: 24px;
-        height: 24px;
+      a {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 4px 0;
+        .icon {
+          width: 24px;
+          height: 24px;
+        }
+        &.selected {
+          color: red;
+          .icon {
+            fill: red;
+          }
+        }
       }
     }
   }
@@ -27,16 +35,31 @@ function Nav() {
     <NavWrapper>
       <ul>
         <li>
-          <Icon name="tag"></Icon>
-          <Link to="/tags">标签页</Link>
+          <NavLink
+            to="/tags"
+            className={({ isActive }) => (isActive ? 'selected' : '')}
+          >
+            <Icon name="tag"></Icon>
+            标签页
+          </NavLink>
         </li>
         <li>
-          <Icon name="money"></Icon>
-          <Link to="/money">记账页</Link>
+          <NavLink
+            to="/money"
+            className={({ isActive }) => (isActive ? 'selected' : '')}
+          >
+            <Icon name="money"></Icon>
+            记账页
+          </NavLink>
         </li>
         <li>
-          <Icon name="statistics"></Icon>
-          <Link to="/statistics">统计页</Link>
+          <NavLink
+            to="/statistics"
+            className={({ isActive }) => (isActive ? 'selected' : '')}
+          >
+            <Icon name="statistics"></Icon>
+            统计页
+          </NavLink>
         </li>
       </ul>
     </NavWrapper>
