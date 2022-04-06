@@ -12,13 +12,13 @@ const Main = styled.main`
 `
 
 type Props = {
-  children: JSX.Element
+  className?: string
 }
 
-function Layout(props: Props) {
+const Layout: React.FC<Props> = (props) => {
   return (
     <Wrapper>
-      <Main>{props.children}</Main>
+      <Main className={props.className}>{props.children}</Main>
       <Nav />
     </Wrapper>
   )
