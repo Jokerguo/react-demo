@@ -1,9 +1,10 @@
 import Layout from 'components/Layout'
 import styled from 'styled-components'
-import { TagsSection } from './TagsSection'
-import { CategorySection } from './CategorySection'
-import { NoteSection } from './NoteSection'
-import { NumberPadSection } from './NumberPadSection'
+import { Tags } from './Tags'
+import { Category } from './Category'
+import { Note } from './Note'
+import { NumberPad } from './NumberPad'
+import { useState } from 'react'
 
 const MyLayout = styled(Layout)`
   display: flex;
@@ -11,12 +12,39 @@ const MyLayout = styled(Layout)`
 `
 
 const Money = () => {
+  const [selected, setSelected] = useState({
+    tags: [] as string[],
+    note: '',
+    category: '-' as '+' | '-',
+    amount: '0',
+  })
+  type Selected = typeof selected
+  const onChangeSelected = (obj: Partial<Selected>) => {
+    setSelected({ ...selected, ...obj })
+  }
+  const onOk = () => {
+    console.log(parseFloat(selected.amount))
+  }
+
   return (
     <MyLayout>
-      <TagsSection />
-      <NoteSection />
-      <CategorySection></CategorySection>
-      <NumberPadSection />
+      <Tags
+        value={selected.tags}
+        onChange={(tags) => onChangeSelected({ tags })}
+      />
+      <Note
+        value={selected.note}
+        onChange={(note) => onChangeSelected({ note })}
+      />
+      <Category
+        value={selected.category}
+        onChange={(category) => onChangeSelected({ category })}
+      />
+      <NumberPad
+        value={selected.amount}
+        onChange={(amount) => onChangeSelected({ amount })}
+        onOk={() => onOk()}
+      />
     </MyLayout>
   )
 }

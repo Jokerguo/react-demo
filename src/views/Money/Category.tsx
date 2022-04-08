@@ -25,11 +25,16 @@ const Section = styled.section`
   }
 `
 
-const CategorySection: React.FC = () => {
+type Props = {
+  value: '+' | '-'
+  onChange: (value: '+' | '-') => void
+}
+
+const Category: React.FC<Props> = (props) => {
   const categoryMap = { '+': '收入', '-': '支出' }
   type Y = keyof typeof categoryMap
   const [categoryList] = useState<Y[]>(['+', '-'])
-  const [selectedCategory, setSelectedCategory] = useState('-')
+  const selectedCategory = props.value
   return (
     <Section>
       <ul>
@@ -37,7 +42,7 @@ const CategorySection: React.FC = () => {
           <li
             key={c}
             className={selectedCategory === c ? 'selected' : ''}
-            onClick={() => setSelectedCategory(c)}
+            onClick={() => props.onChange(c)}
           >
             {categoryMap[c]}
           </li>
@@ -47,4 +52,4 @@ const CategorySection: React.FC = () => {
   )
 }
 
-export { CategorySection }
+export { Category }

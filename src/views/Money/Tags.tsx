@@ -34,9 +34,17 @@ const Section = styled.section`
   }
 `
 
-const TagsSection: React.FC = () => {
+type Props = {
+  value: string[]
+  onChange: (value: string[]) => void
+}
+
+const Tags: React.FC<Props> = (props) => {
   const [tags, setTags] = useState<string[]>(['衣服', '吃饭'])
-  const [selectedTags, setSelectedTags] = useState<string[]>([])
+  const selectedTags = props.value
+  const setSelectedTags = (value: string[]) => {
+    props.onChange(value)
+  }
   const addTag = () => {
     const tagName = window.prompt('请输入标签')
     if (tagName) {
@@ -72,4 +80,4 @@ const TagsSection: React.FC = () => {
   )
 }
 
-export { TagsSection }
+export { Tags }

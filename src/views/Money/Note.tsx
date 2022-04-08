@@ -22,12 +22,17 @@ const Section = styled.section`
   }
 `
 
-const NoteSection: React.FC = () => {
-  const [note, setNote] = useState('')
+type Props = {
+  value: string
+  onChange: (value: string) => void
+}
+
+const Note: React.FC<Props> = (props) => {
+  const note = props.value
   const inputRef = useRef<HTMLInputElement>(null)
   const onBlur = () => {
     if (inputRef.current) {
-      setNote(inputRef.current.value)
+      props.onChange(inputRef.current.value)
     }
   }
   return (
@@ -46,4 +51,4 @@ const NoteSection: React.FC = () => {
   )
 }
 
-export { NoteSection }
+export { Note }
