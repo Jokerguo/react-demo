@@ -9,11 +9,12 @@ try {
 
 type Props = {
   name: string
+  className?: string
 }
 
 const Icon = (props: Props) => {
   return (
-    <svg className="icon">
+    <svg className={['icon', props.className].join(' ')}>
       <use xlinkHref={'#' + props.name}></use>
     </svg>
   )

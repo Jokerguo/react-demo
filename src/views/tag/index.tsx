@@ -1,8 +1,8 @@
 import Icon from 'components/Icon'
 import Layout from 'components/Layout'
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import { useTags } from 'hooks/useTags'
 
 const TagList = styled.ol`
   font-size: 16px;
@@ -17,6 +17,11 @@ const TagList = styled.ol`
       display: flex;
       justify-content: space-between;
       align-items: center;
+      .right {
+        fill: #8d8d9b;
+        width: 18px;
+        height: 18px;
+      }
     }
   }
 `
@@ -39,16 +44,15 @@ const Space = styled.div`
 `
 
 function Tags() {
-  // const {tags} = useTags();
-  const [tags] = useState<string[]>(['嘻嘻嘻', 'asad'])
+  const { tags } = useTags()
   return (
     <Layout>
       <TagList>
         {tags.map((tag) => (
-          <li key={tag}>
-            <Link to={'/tags/' + tag}>
-              <span className="oneLine">{tag}</span>
-              <Icon name="left" />
+          <li key={tag.id}>
+            <Link to={'/tags/' + tag.name}>
+              <span className="oneLine">{tag.name}</span>
+              <Icon className="right" name="right" />
             </Link>
           </li>
         ))}

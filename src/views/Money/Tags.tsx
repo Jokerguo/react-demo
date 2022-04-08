@@ -1,3 +1,4 @@
+import { useTags } from 'hooks/useTags'
 import { useState } from 'react'
 import styled from 'styled-components'
 
@@ -35,31 +36,31 @@ const Section = styled.section`
 `
 
 type Props = {
-  value: string[]
-  onChange: (value: string[]) => void
+  value: number[]
+  onChange: (value: number[]) => void
 }
 
 const Tags: React.FC<Props> = (props) => {
-  const [tags, setTags] = useState<string[]>(['衣服', '吃饭'])
-  const selectedTags = props.value
-  const setSelectedTags = (value: string[]) => {
+  const { tags, setTags } = useTags()
+  const selectedTagIds = props.value
+  const setSelectedTags = (value: number[]) => {
     props.onChange(value)
   }
   const addTag = () => {
     const tagName = window.prompt('请输入标签')
     if (tagName) {
-      setTags([...tags, tagName])
+      setTags([...tags, { id: tags.length + 1, name: tagName }])
     }
   }
-  const toggleTag = (tag: string) => {
-    if (selectedTags.indexOf(tag) >= 0) {
-      setSelectedTags(selectedTags.filter((t) => t !== tag))
+  const toggleTag = (tagId: number) => {
+    if (selectedTagIds.indexOf(tagId) >= 0) {
+      setSelectedTags(selectedTagIds.filter((t) => t !== tagId))
     } else {
-      setSelectedTags([...selectedTags, tag])
+      setSelectedTags([...selectedTagIds, tagId])
     }
   }
-  const getClass = (tag: string) => {
-    return selectedTags.indexOf(tag) >= 0 ? 'selected' : ''
+  const getClass = (tagId: number) => {
+    return selectedTagIds.indexOf(tagId) >= 0 ? 'selected' : ''
   }
 
   return (
@@ -67,11 +68,11 @@ const Tags: React.FC<Props> = (props) => {
       <ol>
         {tags.map((tag) => (
           <li
-            key={tag}
-            onClick={() => toggleTag(tag)}
-            className={getClass(tag)}
+            key={tag.id}
+            onClick={() => toggleTag(tag.id)}
+            className={getClass(tag.id)}
           >
-            {tag}
+            {tag.name}
           </li>
         ))}
       </ol>
