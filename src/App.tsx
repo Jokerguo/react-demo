@@ -10,7 +10,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/tags" element={<Tags />} />
-        <Route path="/tags/:tag" element={<EditTag />} />
+        <Route path="/tags/:id" element={<EditTag />} />
         <Route path="/money" element={<Money />} />
         <Route path="/statistics" element={<Statistics />} />
         <Route path="*" element={<NoMatch />} />

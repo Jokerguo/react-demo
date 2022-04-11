@@ -1,4 +1,5 @@
 import { useTags } from 'hooks/useTags'
+import { createId } from 'lib/createId'
 import styled from 'styled-components'
 
 const Section = styled.section`
@@ -48,7 +49,7 @@ const Tags: React.FC<Props> = (props) => {
   const addTag = () => {
     const tagName = window.prompt('请输入标签')
     if (tagName) {
-      setTags([...tags, { id: tags.length + 1, name: tagName }])
+      setTags([...tags, { id: createId(), name: tagName }])
     }
   }
   const toggleTag = (tagId: number) => {
