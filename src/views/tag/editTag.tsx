@@ -17,9 +17,6 @@ const Topbar = styled.header`
   padding: 14px;
   background: white;
 `
-const MyLayout = styled(Layout)`
-  background: rgba(0, 0, 0, 0.05);
-`
 const InputWrapper = styled.div`
   background: #fff;
   margin: 16px 0;
@@ -43,7 +40,7 @@ const EditTag: React.FC = () => {
     navigate(-1)
   }
   return (
-    <MyLayout>
+    <Layout>
       <Topbar>
         <Icon name="left" onClick={onBack} />
         <span>编辑标签</span>
@@ -71,7 +68,7 @@ const EditTag: React.FC = () => {
       ) : (
         <NoTag>标签不存在</NoTag>
       )}
-    </MyLayout>
+    </Layout>
   )
 }
 

@@ -35,11 +35,14 @@ const Center = styled.div`
 const Space = styled.div`
   height: 16px;
 `
+const MyLayout = styled(Layout)`
+  background: white;
+`
 
 function Tags() {
   const { tags, addTag } = useTags()
   return (
-    <Layout>
+    <MyLayout>
       <TagList>
         {tags.map((tag) => (
           <li key={tag.id}>
@@ -56,7 +59,7 @@ function Tags() {
         <Space />
         <Button onClick={addTag}>新增标签</Button>
       </Center>
-    </Layout>
+    </MyLayout>
   )
 }
 

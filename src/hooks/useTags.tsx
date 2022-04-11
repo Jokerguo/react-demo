@@ -21,6 +21,9 @@ export const useTags = () => {
     localStorage.setItem('tags', JSON.stringify(tags))
   }, [tags])
   const findTag = (id: number) => tags.filter((t) => t.id === id)[0]
+  const getName = (id: number) => {
+    return findTag(id).name
+  }
   const updateTag = (id: number, newTagName: string) => {
     setTags(tags.map((t) => (t.id === id ? { id, name: newTagName } : t)))
   }
@@ -33,5 +36,5 @@ export const useTags = () => {
       setTags([...tags, { id: createId(), name: tagName }])
     }
   }
-  return { tags, setTags, findTag, updateTag, delTag, addTag }
+  return { tags, setTags, findTag, updateTag, delTag, addTag, getName }
 }

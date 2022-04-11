@@ -9,6 +9,7 @@ const Wrapper = styled.div`
 const Main = styled.main`
   flex-grow: 1;
   overflow: auto;
+  background: rgba(0, 0, 0, 0.05);
 `
 
 type Props = {
