@@ -41,16 +41,10 @@ type Props = {
 }
 
 const Tags: React.FC<Props> = (props) => {
-  const { tags, setTags } = useTags()
+  const { tags, addTag } = useTags()
   const selectedTagIds = props.value
   const setSelectedTags = (value: number[]) => {
     props.onChange(value)
-  }
-  const addTag = () => {
-    const tagName = window.prompt('请输入标签')
-    if (tagName) {
-      setTags([...tags, { id: createId(), name: tagName }])
-    }
   }
   const toggleTag = (tagId: number) => {
     if (selectedTagIds.indexOf(tagId) >= 0) {
