@@ -1,5 +1,4 @@
 import { useTags } from 'hooks/useTags'
-import { useState } from 'react'
 import styled from 'styled-components'
 
 const Section = styled.section`
