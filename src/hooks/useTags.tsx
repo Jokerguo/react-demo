@@ -9,15 +9,12 @@ const defaultTags = [
 export const useTags = () => {
   const [tags, setTags] = useState<{ id: number; name: string }[]>(defaultTags)
 
-  const findTag = (id: number) => {
-    const result = tags.filter((t) => t.id === id)
-    if (result.length > 0) {
-      return result[0]
-    } else {
-      return {
-        name: '无效的标签ID',
-      }
-    }
+  const findTag = (id: number) => tags.filter((t) => t.id === id)[0]
+  const updateTag = (id: number, newTagName: string) => {
+    setTags(tags.map((t) => (t.id === id ? { id, name: newTagName } : t)))
   }
-  return { tags, setTags, findTag }
+  const delTag = (id: number) => {
+    setTags(tags.filter((t) => t.id !== id))
+  }
+  return { tags, setTags, findTag, updateTag, delTag }
 }
