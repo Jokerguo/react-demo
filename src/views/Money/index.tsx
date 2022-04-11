@@ -5,25 +5,34 @@ import { Category } from './Category'
 import { Note } from './Note'
 import { NumberPad } from './NumberPad'
 import { useState } from 'react'
+import { useRecords } from 'hooks/useRecords'
 
 const MyLayout = styled(Layout)`
   display: flex;
   flex-direction: column;
 `
 
+type Category = '+' | '-'
+
+const defaultFormData = {
+  tagIds: [] as number[],
+  note: '',
+  category: '-' as Category,
+  amount: '0',
+}
+
 const Money = () => {
-  const [selected, setSelected] = useState({
-    tagIds: [] as number[],
-    note: '',
-    category: '-' as '+' | '-',
-    amount: '0',
-  })
+  const [selected, setSelected] = useState(defaultFormData)
+  const { addRecord } = useRecords()
   type Selected = typeof selected
   const onChangeSelected = (obj: Partial<Selected>) => {
     setSelected({ ...selected, ...obj })
   }
-  const onOk = () => {
-    console.log(parseFloat(selected.amount))
+  const submit = () => {
+    if (addRecord(selected)) {
+      alert('保存成功')
+      setSelected(defaultFormData)
+    }
   }
 
   return (
@@ -43,7 +52,7 @@ const Money = () => {
       <NumberPad
         value={selected.amount}
         onChange={(amount) => onChangeSelected({ amount })}
-        onOk={() => onOk()}
+        onOk={submit}
       />
     </MyLayout>
   )
